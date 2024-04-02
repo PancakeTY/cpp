@@ -6,6 +6,8 @@ endfunction(stream_func)
 stream_func(wc_random_source wc_random_source.cpp)
 stream_func(wc_split wc_split.cpp)
 stream_func(wc_count wc_count.cpp)
+stream_func(function_state function_state.cpp)
+
 # Custom target to group all the stream functions
 add_custom_target(stream_all_funcs DEPENDS ${ALL_STREAM_FUNCS})
 # Turn on WASM profiling

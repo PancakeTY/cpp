@@ -216,6 +216,21 @@ extern "C"
      */
     void faasmBacktrace(const int depth);
 
+    /**
+     * Write the Function level state into State Storage
+     */
+    void faasmWriteFunctionState(const uint8_t* data, long dataLen);
+
+    /**
+     * Gets the size of the function state
+     */
+    size_t faasmReadFunctionStateSize();
+
+    /**
+     * Reads the Function levl full state from State Storage
+     */
+    long faasmReadFunctionState(unsigned char* buffer, long bufferLen);
+
     // Macro for defining zygotes (a default fallback noop is provided)
     int __attribute__((weak)) _faasm_zygote();
 #define FAASM_ZYGOTE() int _faasm_zygote()

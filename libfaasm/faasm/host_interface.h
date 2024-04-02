@@ -160,4 +160,10 @@ void __faasm_migrate_point(FaasmMigrateEntryPoint f, int arg);
 
 HOST_IFACE_FUNC
 void __faasm_host_interface_test(int testNum);
+
+HOST_IFACE_FUNC
+void __faasm_write_function_state(const unsigned char* data, long dataLen);
+
+HOST_IFACE_FUNC
+long __faasm_read_function_state(unsigned char* buffer, long bufferLen);
 #endif

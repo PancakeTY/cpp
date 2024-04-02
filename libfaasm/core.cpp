@@ -227,3 +227,18 @@ unsigned int getConfFlag(const char* key)
 {
     return __faasm_conf_flag(key);
 }
+
+void faasmWriteFunctionState(const uint8_t* data, long dataLen)
+{
+    __faasm_write_function_state(data, dataLen);
+}
+
+size_t faasmReadFunctionStateSize()
+{
+    return __faasm_read_function_state(nullptr, 0);
+}
+
+long faasmReadFunctionState(uint8_t* buffer, long bufferLen)
+{
+    return __faasm_read_function_state(buffer, bufferLen);
+}
