@@ -161,9 +161,21 @@ void __faasm_migrate_point(FaasmMigrateEntryPoint f, int arg);
 HOST_IFACE_FUNC
 void __faasm_host_interface_test(int testNum);
 
+// Create function also write data to state. If it is partitioned stateful,
+// Paritioned Key and State should be passed.
+HOST_IFACE_FUNC
+void __faasm_create_function_state(const unsigned char* data,
+                                   long dataLen,
+                                   const char* inputKey,
+                                   const char* stateKey);
+
 HOST_IFACE_FUNC
 void __faasm_write_function_state(const unsigned char* data, long dataLen);
 
+// Read the function state from state server. If it is partitioned stateful,
+// paasing the inputKeys will return required the states.
 HOST_IFACE_FUNC
-long __faasm_read_function_state(unsigned char* buffer, long bufferLen);
+long __faasm_read_function_state(unsigned char* buffer,
+                                 long bufferLen,
+                                 const char* inputKeys);
 #endif

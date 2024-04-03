@@ -228,17 +228,58 @@ unsigned int getConfFlag(const char* key)
     return __faasm_conf_flag(key);
 }
 
+/**
+ * Creates a new function state
+ */
+void faasmCreateFunctionState(const unsigned char* data, long dataLen)
+{
+    __faasm_create_function_state(data, dataLen, nullptr, nullptr);
+}
+
+/**
+ * Creates a new partitioned function state with its input and state keys.
+ * It means the it is 'partition stateful function', which can be
+ * partitioned by the input key, e.g. ID. The stateKey is used to store
+ * the partitioned state.
+ */
+void faasmCreatePartitionedFunctionState(const uint8_t* data,
+                                         long dataLen,
+                                         const char* inputKey,
+                                         const char* stateKey)
+{
+    __faasm_create_function_state(data, dataLen, inputKey, stateKey);
+}
+
+/**
+ * Write the Function level state into State Storage
+ */
 void faasmWriteFunctionState(const uint8_t* data, long dataLen)
 {
     __faasm_write_function_state(data, dataLen);
 }
 
+/**
+ * Gets the size of the function state
+ */
 size_t faasmReadFunctionStateSize()
 {
-    return __faasm_read_function_state(nullptr, 0);
+    return __faasm_read_function_state(nullptr, 0, nullptr);
 }
 
-long faasmReadFunctionState(uint8_t* buffer, long bufferLen)
+/**
+ * Reads the Function levl full state from State Storage
+ */
+long faasmReadFunctionState(unsigned char* buffer, long bufferLen)
 {
-    return __faasm_read_function_state(buffer, bufferLen);
+    return __faasm_read_function_state(buffer, bufferLen, nullptr);
+}
+
+/**
+ * Read function state. InputKeys is used for partitioned stateful.
+ */
+long faasmReadParitionedFunctionState(unsigned char* buffer,
+                                      long bufferLen,
+                                      const char* inputKeys)
+{
+    return __faasm_read_function_state(buffer, bufferLen, inputKeys);
 }

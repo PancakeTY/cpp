@@ -46,5 +46,6 @@ __faasm_migrate_point
 __faasm_host_interface_test
 
 # Stream
+__faasm_create_function_state
 __faasm_write_function_state
 __faasm_read_function_state

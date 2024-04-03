@@ -217,6 +217,22 @@ extern "C"
     void faasmBacktrace(const int depth);
 
     /**
+     * Creates a new function state
+     */
+    void faasmCreateFunctionState(const unsigned char* data, long dataLen);
+
+    /**
+     * Creates a new partitioned function state with its input and state keys.
+     * It means the it is 'partition stateful function', which can be
+     * partitioned by the input key, e.g. ID. The stateKey is used to store
+     * the partitioned state.
+     */
+    void faasmCreatePartitionedFunctionState(const unsigned char* data,
+                                             long dataLen,
+                                             unsigned char* inputKey,
+                                             unsigned char* stateKey);
+
+    /**
      * Write the Function level state into State Storage
      */
     void faasmWriteFunctionState(const uint8_t* data, long dataLen);
@@ -230,6 +246,13 @@ extern "C"
      * Reads the Function levl full state from State Storage
      */
     long faasmReadFunctionState(unsigned char* buffer, long bufferLen);
+
+    /**
+     * Read function state. InputKeys is used for partitioned stateful.
+     */
+    long faasmReadParitionedFunctionState(unsigned char* buffer,
+                                          long bufferLen,
+                                          unsigned char* inputKeys);
 
     // Macro for defining zygotes (a default fallback noop is provided)
     int __attribute__((weak)) _faasm_zygote();
