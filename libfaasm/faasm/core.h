@@ -243,6 +243,11 @@ extern "C"
     size_t faasmReadFunctionStateSize();
 
     /**
+     * Gets the size of the function state
+     */
+    size_t faasmReadFunctionStateSizeLock();
+
+    /**
      * Reads the Function levl full state from State Storage
      */
     long faasmReadFunctionState(unsigned char* buffer, long bufferLen);
@@ -253,6 +258,23 @@ extern "C"
     long faasmReadParitionedFunctionState(unsigned char* buffer,
                                           long bufferLen,
                                           unsigned char* inputKeys);
+
+    /**
+     * Read function state data. It returns a pointer of vector<uint8_t>. If
+     * nullptr is returned, means this state is created but not initialized. In
+     * the same time the data is locked.
+     */
+    uint8_t* faasmReadFunctionStatePtrLock();
+
+    /**
+     * Write the function state into state server. This function won't create
+     * any functionstate object. It will also unlock the function after writing.
+     */
+    void faasmWriteFunctionStateUnlock(const uint8_t* data, long dataLen);
+
+    long faasmFunctionStateLock();
+
+    void faasmFunctionStateUnlock();
 
     // Macro for defining zygotes (a default fallback noop is provided)
     int __attribute__((weak)) _faasm_zygote();

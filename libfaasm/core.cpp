@@ -263,7 +263,15 @@ void faasmWriteFunctionState(const uint8_t* data, long dataLen)
  */
 size_t faasmReadFunctionStateSize()
 {
-    return __faasm_read_function_state(nullptr, 0, nullptr);
+    return __faasm_read_function_state_size(0);
+}
+
+/**
+ * Gets the size of the function state
+ */
+size_t faasmReadFunctionStateSizeLock()
+{
+    return __faasm_read_function_state_size(1);
 }
 
 /**
@@ -271,15 +279,44 @@ size_t faasmReadFunctionStateSize()
  */
 long faasmReadFunctionState(unsigned char* buffer, long bufferLen)
 {
-    return __faasm_read_function_state(buffer, bufferLen, nullptr);
+    return __faasm_read_function_state(buffer, bufferLen);
+}
+
+// /**
+//  * Read function state. InputKeys is used for partitioned stateful.
+//  */
+// long faasmReadParitionedFunctionState(unsigned char* buffer,
+//                                       long bufferLen,
+//                                       const char* inputKeys)
+// {
+//     return __faasm_read_function_state(buffer, bufferLen, inputKeys);
+// }
+
+/**
+ * Read function state data. It returns a pointer of vector<uint8_t>. If
+ * nullptr is returned, means this state is created but not initialized. In
+ * the same time the data is locked.
+ */
+uint8_t* faasmReadFunctionStatePtrLock()
+{
+    return __faasm_read_function_state_ptr_lock();
 }
 
 /**
- * Read function state. InputKeys is used for partitioned stateful.
+ * Write the function state into state server. This function won't create
+ * any functionstate object. It will also unlock the function after writing.
  */
-long faasmReadParitionedFunctionState(unsigned char* buffer,
-                                      long bufferLen,
-                                      const char* inputKeys)
+void faasmWriteFunctionStateUnlock(const uint8_t* data, long dataLen)
 {
-    return __faasm_read_function_state(buffer, bufferLen, inputKeys);
+    __faasm_write_function_state_unlock(data, dataLen);
+}
+
+long faasmFunctionStateLock()
+{
+    return __faasm_function_state_lock();
+}
+
+void faasmFunctionStateUnlock()
+{
+    __faasm_function_state_unlock();
 }

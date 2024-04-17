@@ -176,6 +176,22 @@ void __faasm_write_function_state(const unsigned char* data, long dataLen);
 // paasing the inputKeys will return required the states.
 HOST_IFACE_FUNC
 long __faasm_read_function_state(unsigned char* buffer,
-                                 long bufferLen,
-                                 const char* inputKeys);
+                                 long bufferLen);
+
+HOST_IFACE_FUNC
+unsigned char* __faasm_read_function_state_ptr_lock();
+
+HOST_IFACE_FUNC
+void __faasm_write_function_state_unlock(const unsigned char* data,
+                                         long dataLen);
+
+HOST_IFACE_FUNC
+long __faasm_function_state_lock();
+
+HOST_IFACE_FUNC
+void __faasm_function_state_unlock();
+
+// lock == 0 means false, lock == 1 means true.
+HOST_IFACE_FUNC
+long __faasm_read_function_state_size(int lock);
 #endif
