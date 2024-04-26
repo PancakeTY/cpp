@@ -1,5 +1,6 @@
 #include "faasm/core.h"
 #include "faasm/faasm.h"
+#include "faasm/input.h"
 #include "faasm/random.h"
 #include <faasm/serialization.h>
 #include <iostream>
@@ -11,19 +12,32 @@
 
 int main(int argc, char* argv[])
 {
+    // get the inputMap (inputdata)
+    std::vector<uint8_t> vec = faasm::getInputVec();
+    size_t index = 0;
+    std::map<std::string, std::map<std::string, std::string>> inputMap =
+      faasm::deserializeNestedMap(vec,index);
+    // printf the inputMap size
+    printf("inputMap size: %ld\n", inputMap.size());
     // Create a list of words
     std::vector<std::string> messages = { "cat", "dog", "pig" };
-    // Get a random number from 0 to size of messages
-    int random_number = faasm::randomInteger(0, messages.size() - 1);
-    // Return a random sentence
-    std::string message = messages[random_number];
-    printf("WordCount source: Created Random sentence: %s\n", message.c_str());
 
-    std::map<std::string, std::vector<uint8_t>> input;
-    input["partitionInputKey"] =
-      std::vector<uint8_t>(message.begin(), message.end());
-    std::vector<uint8_t> inputBytes = faasm::serializeParState(input);
-    printf("output inputyByes: %s\n", inputBytes.data());
-    faasmChainNamed("function_parstate", inputBytes.data(), inputBytes.size());
+    for (int i = 0; i < inputMap.size(); i++) {
+        // Get a random number from 0 to size of messages
+        int random_number = faasm::randomInteger(0, messages.size() - 1);
+        // Return a random sentence
+        std::string message = messages[random_number];
+        printf("WordCount source: Created Random sentence: %s\n",
+               message.c_str());
+
+        std::map<std::string, std::string> input;
+        input["partitionInputKey"] = message;
+        input["key2"] = "key2value";
+        std::vector<uint8_t> inputBytes;
+        faasm::serializeMap(inputBytes, input);
+                
+        faasmChainNamedId(
+          "function_parstate", inputBytes.data(), inputBytes.size(), i);
+    }
     return 0;
 }

@@ -24,6 +24,19 @@ const char* getStringInput(const char* defaultValue)
     return strIn;
 }
 
+// We use Vec here since, sometimes input cannot cast to string
+const std::vector<uint8_t> getInputVec(){
+    long inputSize = faasmGetInputSize();
+    if (inputSize == 0) {
+        return std::vector<uint8_t>();
+    }
+    std::vector<uint8_t> inputBuffer(inputSize);
+    faasmGetInput(inputBuffer.data(), inputSize);
+
+    // Convert to string if returning is necessary
+    return inputBuffer;
+}
+
 int getIntInput()
 {
     const char* inputStr = faasm::getStringInput("0");

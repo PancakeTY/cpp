@@ -2,9 +2,12 @@
 #define FAASM_INPUT_H
 
 #include "faasm/core.h"
+#include <vector>
 
 namespace faasm {
 const char* getStringInput(const char* defaultValue);
+
+const std::vector<uint8_t> getInputVec();
 
 void setStringOutput(const char* val);
 

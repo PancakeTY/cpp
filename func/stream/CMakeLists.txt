@@ -9,6 +9,7 @@ stream_func(wc_count wc_count.cpp)
 stream_func(function_state function_state.cpp)
 stream_func(function_parstate function_parstate.cpp)
 stream_func(function_parstate_source function_parstate_source.cpp)
+stream_func(batch_echo batch_echo.cpp)
 
 # Custom target to group all the stream functions
 add_custom_target(stream_all_funcs DEPENDS ${ALL_STREAM_FUNCS})

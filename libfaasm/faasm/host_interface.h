@@ -102,7 +102,8 @@ void __faasm_write_output(const char* output, long outputLen);
 HOST_IFACE_FUNC
 unsigned int __faasm_chain_name(const char* name,
                                 const unsigned char* inputData,
-                                long inputDataSize);
+                                long inputDataSize, 
+                                int idx);
 
 HOST_IFACE_FUNC
 unsigned int __faasm_chain_ptr(int (*funcPtr)(),

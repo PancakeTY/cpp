@@ -162,7 +162,17 @@ unsigned int faasmChainNamed(const char* name,
                              const uint8_t* inputData,
                              long inputDataSize)
 {
-    return __faasm_chain_name(name, inputData, inputDataSize);
+    return __faasm_chain_name(name, inputData, inputDataSize, 0);
+}
+
+// This function is desiged for batch processing, the message has to call the
+// with idx
+unsigned int faasmChainNamedId(const char* name,
+                             const uint8_t* inputData,
+                             long inputDataSize,
+                             int idx)
+{
+    return __faasm_chain_name(name, inputData, inputDataSize, idx);
 }
 
 unsigned int faasmChain(FaasmFuncPtr funcPtr,

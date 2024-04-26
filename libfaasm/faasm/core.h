@@ -165,6 +165,14 @@ extern "C"
                                  long inputDataSize);
 
     /**
+     * Chains a function with the given input data with the current messageIdx
+     */
+    unsigned int faasmChainNamedId(const char* name,
+                                 const uint8_t* inputData,
+                                 long inputDataSize,
+                                 int idx);
+
+    /**
      * Chains a function from this module with the given input data
      */
     unsigned int faasmChain(FaasmFuncPtr funcPtr,
