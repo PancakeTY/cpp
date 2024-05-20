@@ -168,9 +168,9 @@ unsigned int faasmChainNamed(const char* name,
 // This function is desiged for batch processing, the message has to call the
 // with idx
 unsigned int faasmChainNamedId(const char* name,
-                             const uint8_t* inputData,
-                             long inputDataSize,
-                             int idx)
+                               const uint8_t* inputData,
+                               long inputDataSize,
+                               int idx)
 {
     return __faasm_chain_name(name, inputData, inputDataSize, idx);
 }
@@ -329,4 +329,9 @@ long faasmFunctionStateLock()
 void faasmFunctionStateUnlock()
 {
     __faasm_function_state_unlock();
+}
+
+void faasmChainInvoke()
+{
+    __faasm_chain_invoke();
 }

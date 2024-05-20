@@ -195,4 +195,7 @@ void __faasm_function_state_unlock();
 // lock == 0 means false, lock == 1 means true.
 HOST_IFACE_FUNC
 long __faasm_read_function_state_size(int lock);
+
+HOST_IFACE_FUNC
+void __faasm_chain_invoke();
 #endif

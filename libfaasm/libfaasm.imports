@@ -54,3 +54,4 @@ __faasm_write_function_state_unlock
 __faasm_function_state_lock
 __faasm_function_state_unlock
 __faasm_read_function_state_size
+__faasm_chain_invoke

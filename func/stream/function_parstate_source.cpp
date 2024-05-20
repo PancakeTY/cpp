@@ -39,5 +39,7 @@ int main(int argc, char* argv[])
         faasmChainNamedId(
           "function_parstate", inputBytes.data(), inputBytes.size(), i);
     }
+
+    faasmChainInvoke();
     return 0;
 }
