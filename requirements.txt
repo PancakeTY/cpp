@@ -1,6 +1,6 @@
 black==22.3.0
 # faasmctl==0.13.0
-myfaasmctl==0.0.2
+myfaasmctl==0.0.4
 flake8==4.0.1
 invoke>=2.0.0
 requests>=2.31.0
