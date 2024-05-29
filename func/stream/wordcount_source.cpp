@@ -24,7 +24,19 @@ int main(int argc, char* argv[])
         "an apple a day keeps the doctor away",
         "four score and seven years ago",
         "snow white and the seven dwarfs",
-        "i am at two with nature"
+        "i am at two with nature",
+        "the quick brown fox jumps over the lazy dog",
+        "the early bird catches the worm",
+        "to be or not to be that is the question",
+        "ask not what your country can do for you ask what you can do for your country",
+        "i think therefore i am",
+        "the only thing we have to fear is fear itself",
+        "i have nothing to offer but blood toil tears and sweat",
+        "i came i saw i conquered",
+        "the pen is mightier than the sword",
+        "when in the course of human events",
+        "the bigger they are the harder they fall",
+        "the best laid schemes of mice"
     };
 
     // Iterate over the input data and create a random sentence for each

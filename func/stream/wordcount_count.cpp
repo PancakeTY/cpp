@@ -54,10 +54,10 @@ int main(int argc, char* argv[])
     }
     
     // Print the parFunctionState
-    std::cout << "Printing the partitioned function state" << std::endl;
-    for (auto const& x : parFunctionState) {
-        std::cout << x.first << " : " << faasm::uint8VToUint32(x.second) << std::endl;
-    }
+    // std::cout << "Printing the partitioned function state" << std::endl;
+    // for (auto const& x : parFunctionState) {
+    //     std::cout << x.first << " : " << faasm::uint8VToUint32(x.second) << std::endl;
+    // }
 
     /*
     After the loop

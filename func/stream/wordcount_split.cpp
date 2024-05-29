@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
         // call next function.
         std::string inputSentence = inputMap[std::to_string(i)]["sentence"];
         // Print the inputSentence
-        printf("WordCount split: Received sentence: %s\n", inputSentence.c_str());
+        // printf("WordCount split: Received sentence: %s\n", inputSentence.c_str());
         
         std::string word;
 

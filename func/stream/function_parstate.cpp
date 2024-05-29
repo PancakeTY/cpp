@@ -15,12 +15,12 @@ int main(int argc, char* argv[])
 
     // get the inputMap (inputdata)
     std::vector<uint8_t> vec = faasm::getInputVec();
-    // printf the vector
-    printf("input data: ");
-    for (const auto& i : vec) {
-        printf("%d ", i);
-    }
-    printf("\n read data finished. \n");
+    // // printf the vector
+    // printf("input data: ");
+    // for (const auto& i : vec) {
+    //     printf("%d ", i);
+    // }
+    // printf("\n read data finished. \n");
 
     size_t index = 0; // Reset index if reusing buffer
     std::map<std::string, std::map<std::string, std::string>> inputMap =
@@ -39,7 +39,6 @@ int main(int argc, char* argv[])
     printf("parstate readSize: %ld\n", readSize);
     if (readSize == 0) {
         printf("function state is still not initilized, initializing it\n");
-        functionState["k1"] = { 1, 2, 3, 4, 5 };
         functionState["k2"] = { 2, 3, 4, 5, 6, 7, 8 };
         functionState["partitionStateKey"] = {};
     } else {
@@ -61,6 +60,8 @@ int main(int argc, char* argv[])
     Begin the loop
     */
 
+    // Print the size of inputMap
+    printf("inputMap size: %ld\n", inputMap.size());
     for (size_t i = 0; i < inputMap.size(); i++) {
         // get the input for this spefic function invoke.
         std::string inputParStr = inputMap[std::to_string(i)]["partitionInputKey"];

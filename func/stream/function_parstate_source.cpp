@@ -16,11 +16,21 @@ int main(int argc, char* argv[])
     std::vector<uint8_t> vec = faasm::getInputVec();
     size_t index = 0;
     std::map<std::string, std::map<std::string, std::string>> inputMap =
-      faasm::deserializeNestedMap(vec,index);
+      faasm::deserializeNestedMap(vec, index);
     // printf the inputMap size
-    printf("inputMap size: %ld\n", inputMap.size());
+    printf("inputMap size (Batch Size): %ld\n", inputMap.size());
+
     // Create a list of words
-    std::vector<std::string> messages = { "cat", "dog", "pig" };
+    std::vector<std::string> messages = {
+        "cat",     "dog",      "pig",        "horse",    "cow",
+        "chicken", "sheep",    "goat",       "rabbit",   "duck",
+        "turkey",  "rooster",  "llama",      "alpaca",   "guinea pig",
+        "hamster", "ferret",   "parrot",     "canary",   "cockatiel",
+        "macaw",   "parakeet", "budgerigar", "lovebird", "african grey",
+        "amazon",  "cockatoo", "conure",     "eclectus", "lorikeet",
+        "pionus",  "quaker",   "ringneck",   "rosella",  "senegal",
+        "caique"
+    };
 
     for (int i = 0; i < inputMap.size(); i++) {
         // Get a random number from 0 to size of messages
@@ -35,7 +45,7 @@ int main(int argc, char* argv[])
         input["key2"] = "key2value";
         std::vector<uint8_t> inputBytes;
         faasm::serializeMap(inputBytes, input);
-                
+
         faasmChainNamedId(
           "function_parstate", inputBytes.data(), inputBytes.size(), i);
     }
