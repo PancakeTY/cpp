@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
       faasm::deserializeNestedMap(vec, index);
 
     // Create a list of words
-    std::vector<std::string> sentences = {
+    std::vector<std::string> messages = {
         "a picture is worth a thousand words but actions speak louder",
         "the grass is always greener on the other side of the fence",
         "honesty is the best policy especially when dealing with difficult "
