@@ -3,10 +3,10 @@
 #include <faasm/serialization.h>
 #include <iostream>
 #include <map>
-#include <stdio.h>
 #include <string>
 #include <vector>
 
+// TODO -     auto t0 = std::chrono::system_clock::now(); might contains bug
 // We must register the function_state in scheduler!
 
 int main(int argc, char* argv[])
